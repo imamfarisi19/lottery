@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gatcha Farisi</title>
+
+</head>
+
+<body>
+    <h1>File Upload</h1>
+    <label for="myfile">Select a file:</label><br/>
+    <input type="file" id="myfile" name="myfile" /><br/>
+    <input type="text" id="jumlahpemenang" name="jumlahpemenang" /><br/>
+    <input type="submit" value="Submit" onClick=upload() />
+    <hr/>
+
+    <script>
+        function upload(event) {
+            var file = document.getElementById("myfile").files[0];
+            var reader = new FileReader();
+            const limit = document.getElementById('jumlahpemenang').value
+
+            reader.onload = function(e) {
+                // console.log(e)
+                var ar = e.target.result.split("\n")
+                ar.shift();
+                const shuffle = acak(ar);
+                const result = shuffle.splice(0, limit);
+                console.log(result);
+
+            };
+            reader.readAsText(file);
+
+            // pisahkan data per baris .done.
+            // hapus header data pada baris pertama.done.
+            // acak data .done.
+            // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done.
+            // tampilkan data di halaman web di bawah baris.done.
+            // validasi
+            /// 1. error bila file kosong
+            //  2. errro bila file bukan csv
+            //  3. error bila input jumlah kosong
+        }
+
+        function acak(ar) {
+
+            var ctr = ar.length,
+                temp, index;
+
+            // while there are elements in the array
+            while (ctr > 0) {
+                // pick a random index
+                index = Math.floor(Math.random() * ctr);
+                // Decrease ctr by 1
+                ctr--;
+                // and swap the last element with it
+                temp = ar[ctr];
+                ar[ctr] = ar[index];
+                ar[index] = temp;
+            }
+            return ar;
+
+        }
+    </script>
+</body>
+
+</html>
