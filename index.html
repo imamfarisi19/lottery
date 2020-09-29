@@ -13,6 +13,7 @@
     <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
+    <ol id="result"></ol>
     <table id="tableData" style="width: 100%">
         <tr>
             <th>TimeStamp</th>
@@ -33,37 +34,6 @@
             }
             output.innerHTML = tableContent;
         }
-        /*
-         <tr>
-            <td id="TimeStamp1"></td>
-            <td id="Email1"></td>
-            <td id="Nama1"></td>
-            <td id="AsalInstansi1"></td>
-            <td id="Pekerjaan1"></td>
-            <td id="NomorWhatsApp1"></td>
-        </tr>
-        */
-        // pisahkan data per baris .done. 
-        // hapus header data pada baris pertama.done. 
-        // acak data .done. 
-        // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done. 
-        // tampilkan data di halaman web di bawah baris.done. 
-        // tampilkan data per email dan nama
-        // validasi 
-        // kita ingin memvalidasi lalu yang dilakukan adalah 
-        // ada peringatan apabila file kossong, bukan csv atau input jumlah kosong 
-        // 1. error bila file kosong 
-        // 2. errro bila file bukan csv 
-        // 3. error bila input jumlah kosong
-
-        /*
-        function splitString(stringToSplit, separator) {
-            const arrayOfStrings = stringToSplit.split(separator)
-            console.log('The original string is: ', stringToSplit)
-            console.log('The separator is: ', separator)
-            console.log('The array has ', arrayOfStrings.length, ' elements: ', arrayOfStrings.join(' / '))
-        }
-        */
 
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
@@ -75,11 +45,18 @@
                 console.log(e)
                 var ar = e.target.result.split("\n");
                 ar.shift();
-                const shuffle = acak(ar);
-                const result = shuffle.splice(0, limit);
+                let shuffleData = acak(ar);
+                let rowData = shuffleData.splice(0, limit);
 
-                var iT = document.getElementById("tableData").innerHTML = result;
-                console.log(iT);
+		    rowData.map(row =>{
+			 const name = row.split(",")[2].split('"')[1];
+			 // Create list element
+			 let listData = document.createElement("li");
+			 let valueData = document.createTextNode(name);
+			 listData.appendChild(valueData);
+			    
+			document.getElementById("result").appendChild(listData);
+		    })
             };
             reader.readAsText(file);
         }
