@@ -2,44 +2,104 @@
 <html>
 
 <head>
-    <title>Gatcha Farisi</title>
+    <title>Lottery Farisi</title>
 
 </head>
 
 <body>
-    <h1>File Upload</h1>
+    <h1>File upload</h1>
     <label for="myfile">Select a file:</label><br/>
-    <input type="file" id="myfile" name="myfile" /><br/>
-    <input type="text" id="jumlahpemenang" name="jumlahpemenang" /><br/>
-    <input type="submit" value="Submit" onClick=upload() />
+    <input type="file" id="fileUpload" name="fileUpload" required/><br/>
+    <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
+    <input type="submit" value="Submit" onclick="upload()">
     <hr/>
+    <table id="tableData" style="width: 100%">
+        <tr>
+            <th>TimeStamp</th>
+            <th>Email</th>
+            <th>Nama</th>
+            <th>Asal Instansi</th>
+            <th>Pekerjaan</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
 
+
+
+    </table>
+
+    <h3 id="hasil1"></h3>
     <script>
+        function itterationTable(data) {
+            var tableContent = '<tr>';
+            for (index = 0; index < hasil.length; index++) {
+                tableContent += "<tr><td>" + hasil[index] + "</td></tr>";
+            }
+            output.innerHTML = tableContent;
+        }
+        /*
+         <tr>
+            <td id="TimeStamp1"></td>
+            <td id="Email1"></td>
+            <td id="Nama1"></td>
+            <td id="AsalInstansi1"></td>
+            <td id="Pekerjaan1"></td>
+            <td id="NomorWhatsApp1"></td>
+        </tr>
+        */
+        // pisahkan data per baris .done. 
+        // hapus header data pada baris pertama.done. 
+        // acak data .done. 
+        // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done. 
+        // tampilkan data di halaman web di bawah baris.done. 
+        // tampilkan data per email dan nama
+        // validasi 
+        // kita ingin memvalidasi lalu yang dilakukan adalah 
+        // ada peringatan apabila file kossong, bukan csv atau input jumlah kosong 
+        // 1. error bila file kosong 
+        // 2. errro bila file bukan csv 
+        // 3. error bila input jumlah kosong
+
+        /*
+        function splitString(stringToSplit, separator) {
+            const arrayOfStrings = stringToSplit.split(separator)
+            console.log('The original string is: ', stringToSplit)
+            console.log('The separator is: ', separator)
+            console.log('The array has ', arrayOfStrings.length, ' elements: ', arrayOfStrings.join(' / '))
+        }
+        */
+
         function upload(event) {
-            var file = document.getElementById("myfile").files[0];
+            var file = document.getElementById("fileUpload").files[0];
             var reader = new FileReader();
-            const limit = document.getElementById('jumlahpemenang').value
+            const limit = document.getElementById("jumlahpemenang").value;
+            const comma = ',';
 
             reader.onload = function(e) {
-                // console.log(e)
-                var ar = e.target.result.split("\n")
+                console.log(e)
+                var ar = e.target.result.split("\n");
                 ar.shift();
                 const shuffle = acak(ar);
                 const result = shuffle.splice(0, limit);
-                console.log(result);
+                //var hasil = document.getElementById("hasil1").innerHTML = result;
+                //console.log(hasil);
+
+                var iT = document.getElementById("tableData").innerHTML = result;
+                console.log(iT);
+                //console.log(splitString(hasil, comma));
 
             };
             reader.readAsText(file);
+        }
 
-            // pisahkan data per baris .done.
-            // hapus header data pada baris pertama.done.
-            // acak data .done.
-            // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done.
-            // tampilkan data di halaman web di bawah baris.done.
-            // validasi
-            /// 1. error bila file kosong
-            //  2. errro bila file bukan csv
-            //  3. error bila input jumlah kosong
+        function validate_fileupload(fileName) {
+            var allowed_extensions = new Array("csv");
+            var file_extension = fileName.split('.').pop().toLowerCase(); // split function will split the filename by dot., and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
+            for (var i = 0; i <= allowed_extensions.length; i++) {
+                if (allowed_extensions[i] == file_extension) {
+                    return true; // valid file extension
+                }
+            }
+            return false;
         }
 
         function acak(ar) {
@@ -62,6 +122,7 @@
 
         }
     </script>
+
 </body>
 
 </html>
