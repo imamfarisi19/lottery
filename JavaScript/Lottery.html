@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lottery Farisi</title>
+
+</head>
+
+<body>
+    <h1>File upload</h1>
+    <label for="myfile">Select a file:</label><br/>
+    <input type="file" id="fileUpload" name="fileUpload" /><br/>
+    <input type=" text " id="jumlahpemenang" name="jumlahpemenang" /><br/>
+    <input type="submit" value="Submit" onclick="upload()" onclick="validate_fileupload()">
+    <hr/>
+    <table style="width: 100%;">
+        <tr>
+            <th>TimeStamp</th>
+            <th>Email</th>
+            <th>Nama</th>
+            <th>Asal Instansi</th>
+            <th>Pekerjaan</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+    <h3 id="hasil1"></h3>
+    <script>
+        // pisahkan data per baris .done. 
+        // hapus header data pada baris pertama.done. 
+        // acak data .done. 
+        // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done. 
+        // tampilkan data di halaman web di bawah baris.done. 
+        // tampilkan data per email dan nama
+        // validasi 
+        // kita ingin memvalidasi lalu yang dilakukan adalah 
+        // ada peringatan apabila file kossong, bukan csv atau input jumlah kosong 
+        // 1. error bila file kosong 
+        // 2. errro bila file bukan csv 
+        // 3. error bila input jumlah kosong
+
+        function splitString(stringToSplit, separator) {
+            const arrayOfStrings = stringToSplit.split(separator)
+            console.log('The original string is: ', stringToSplit)
+            console.log('The separator is: ', separator)
+            console.log('The array has ', arrayOfStrings.length, ' elements: ', arrayOfStrings.join(' / '))
+        }
+
+        function upload(event) {
+            var file = document.getElementById("fileUpload").files[0];
+            var reader = new FileReader();
+            const limit = document.getElementById("jumlahpemenang").value;
+            const comma = ',';
+
+            reader.onload = function(e) {
+                // console.log(e)
+                var ar = e.target.result.split("\n");
+                ar.shift();
+                const shuffle = acak(ar);
+                const result = shuffle.splice(0, limit);
+                var hasil = document.getElementById("hasil1").innerHTML = result;
+                console.log(hasil);
+                console.log(splitString(hasil, comma));
+
+            };
+            reader.readAsText(file);
+        }
+
+        function validate_fileupload(fileName) {
+            var allowed_extensions = new Array("csv");
+            var file_extension = fileName.split('.').pop().toLowerCase(); // split function will split the filename by dot., and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
+            for (var i = 0; i <= allowed_extensions.length; i++) {
+                if (allowed_extensions[i] == file_extension) {
+                    return true; // valid file extension
+                }
+            }
+            return false;
+        }
+
+        function acak(ar) {
+
+            var ctr = ar.length,
+                temp, index;
+
+            // while there are elements in the array
+            while (ctr > 0) {
+                // pick a random index
+                index = Math.floor(Math.random() * ctr);
+                // Decrease ctr by 1
+                ctr--;
+                // and swap the last element with it
+                temp = ar[ctr];
+                ar[ctr] = ar[index];
+                ar[index] = temp;
+            }
+            return ar;
+
+        }
+    </script>
+
+</body>
+
+</html>
