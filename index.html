@@ -2,6 +2,18 @@
 <html>
 
 <head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        li {
+            border: 1px solid black;
+        }
+    </style>
     <title>Lottery Farisi</title>
 </head>
 
@@ -13,19 +25,25 @@
     <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
-    <ol id="result"></ol>
-    <table id="tableData" style="width: 100%">
+
+    <table style="width: 100%">
         <tr>
-            <th>TimeStamp</th>
-            <th>Email</th>
             <th>Nama</th>
-            <th>Asal Instansi</th>
-            <th>Pekerjaan</th>
+            <th>Email</th>
             <th>Nomor WhatsApp</th>
         </tr>
+        <tr>
+            <td>
+                <ol id="name"></ol>
+            </td>
+            <td>
+                <ol id="email"></ol>
+            </td>
+            <td>
+                <ol id="wA"></ol>
+            </td>
+        </tr>
     </table>
-
-    <h3 id="hasil1"></h3>
     <script>
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
@@ -38,21 +56,33 @@
                 ar.shift();
                 let shuffleData = acak(ar);
                 let rowData = shuffleData.splice(0, limit);
-
                 rowData.map(row => {
+                    console.log(row);
                     const name = row.split(",")[2].split('"')[1];
-                    // Create list element
-                    let listData = document.createElement("li");
-                    let valueData = document.createTextNode(name);
-                    listData.appendChild(valueData);
+                    const email = row.split(",")[1].split('"')[1];
+                    const wA = row.split(",")[5].split('"')[1];
+                    console.log(wA);
+                    // Create list element from name
+                    let nameList = document.createElement("li");
+                    let nameValue = document.createTextNode(name);
+                    nameList.appendChild(nameValue);
+                    document.getElementById("name").appendChild(nameList);
 
-                    document.getElementById("result").appendChild(listData);
+                    // Create list element from email
+                    let emailList = document.createElement("li");
+                    let emailValue = document.createTextNode(email);
+                    emailList.appendChild(emailValue);
+                    document.getElementById("email").appendChild(emailList);
+
+                    // Create list element from email
+                    let wAList = document.createElement("li");
+                    let wAValue = document.createTextNode(wA);
+                    wAList.appendChild(wAValue);
+                    document.getElementById("wA").appendChild(wAList);
                 })
             };
             reader.readAsText(file);
         }
-
-
 
         function acak(ar) {
 
