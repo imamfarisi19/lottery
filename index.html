@@ -3,6 +3,7 @@
 
 <head>
     <style>
+<<<<<<< HEAD
         th,
         tr,
         td {
@@ -16,6 +17,19 @@
         }
     </style>
 
+=======
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        li {
+            border: 1px solid black;
+        }
+    </style>
+>>>>>>> fc11b95... table
     <title>Lottery Farisi</title>
 </head>
 
@@ -27,7 +41,29 @@
     <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
+<<<<<<< HEAD
     <div id="result"></div>
+=======
+
+    <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr>
+            <td>
+                <ol id="name"></ol>
+            </td>
+            <td>
+                <ol id="email"></ol>
+            </td>
+            <td>
+                <ol id="wA"></ol>
+            </td>
+        </tr>
+    </table>
+>>>>>>> fc11b95... table
     <script>
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
@@ -55,8 +91,6 @@
 			}
                 }
 	    var resultContainer = document.getElementById('result');
-	    resultContainer.appendChild(table);
-            };
             reader.readAsText(file);
         }
 
