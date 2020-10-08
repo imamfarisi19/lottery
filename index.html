@@ -3,9 +3,25 @@
 
 <head>
     <style>
-        tr {
+        th,
+        ol {
             border: 1px solid black;
             border-collapse: collapse;
+            font-size: small;
+        }
+        
+        ol {
+            margin: auto;
+            padding-left: auto;
+        }
+        
+        li {
+            transition-duration: 5s;
+        }
+        
+        li:hover {
+            color: red;
+            background-color: green;
         }
     </style>
 
@@ -23,8 +39,8 @@
 
     <table id="tableData" style="width: 100%">
         <tr>
-            <th>Email</th>
             <th>Nama</th>
+            <th>Email</th>
             <th>Nomor WhatsApp</th>
         </tr>
         <tr>
@@ -43,14 +59,6 @@
     </table>
 
     <script>
-        function itterationTable(data) {
-            var tableContent = '<tr>';
-            for (index = 0; index < hasil.length; index++) {
-                tableContent += "<tr><td>" + hasil[index] + "</td></tr>";
-            }
-            output.innerHTML = tableContent;
-        }
-
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
             var reader = new FileReader();
@@ -66,11 +74,26 @@
 
                 rowData.map(row => {
                     const name = row.split(",")[2].split('"')[1];
-                    // Create list element
-                    let listData = document.createElement("li");
-                    let valueData = document.createTextNode(name);
-                    listData.appendChild(valueData);
-                    document.getElementById("result").appendChild(listData);
+                    const email = row.split(",")[1].split('"')[1];
+                    const wa = row.split(",")[5].split('"')[1];
+
+                    // Create list element from name
+                    let nameListData = document.createElement("li");
+                    let nameValueData = document.createTextNode(name);
+                    nameListData.appendChild(nameValueData);
+                    document.getElementById("name").appendChild(nameListData);
+
+                    // Create list element from email
+                    let emailListData = document.createElement("li");
+                    let emailValueData = document.createTextNode(email);
+                    emailListData.appendChild(emailValueData);
+                    document.getElementById("email").appendChild(emailListData);
+
+                    // Create list element from WhatsApp
+                    let waListData = document.createElement("li");
+                    let waValueData = document.createTextNode(wa);
+                    waListData.appendChild(waValueData);
+                    document.getElementById("wa").appendChild(waListData);
                 })
             };
             reader.readAsText(file);
