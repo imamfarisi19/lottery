@@ -24,14 +24,25 @@
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
 
-    <div id="container"></div>
+    <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr>
+            <td id="name"></td>
+        </tr>
+        <tr id="email"></tr>
+        <tr id="wa"></tr>
+
+    </table>
 
     <script>
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
             var reader = new FileReader();
             const limit = document.getElementById("jumlahpemenang").value;
-            const comma = ',';
 
             reader.onload = function(e) {
                 console.log(e)
@@ -44,32 +55,18 @@
                     const name = row.split(",")[2].split('"')[1];
                     const email = row.split(",")[1].split('"')[1];
                     const wa = row.split(",")[5].split('"')[1];
-                    var data = {
-                        name,
-                        email,
-                        wa
-                    }
-                    console.log(data);
+                    var dataarr = [name, email, wa];
+                    console.log(dataarr);
+                    // Create list element from name
+
+                    var nameValueData = document.createTextNode(dataarr);
+
+                    document.getElementById("name").appendChild(nameValueData);
+                    console.log(nameValueData);
+
                 })
-                var table = document.createElement("table"),
-                    row = table.insertRow();
 
-                // Loop as usual
-                var perrow = 3; // 2 cells per row
-                var count = 0;
-                for (var i of data) {
-                    var cell = row.insertCell();
-                    cell.innerHTML = i;
 
-                    // Break into new row
-                    count++;
-                    if (count % perrow == 0) {
-                        row = table.insertRow();
-                    }
-                }
-
-                // Attach table to HTML <div>
-                document.getElementById("container").appendChild(table);
             };
             reader.readAsText(file);
         }

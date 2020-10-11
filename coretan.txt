@@ -16,3 +16,16 @@
                     // let waValueData = document.createTextNode(wa);
                     // waListData.appendChild(waValueData);
                     // document.getElementById("wa").appendChild(waListData);
+
+
+                    <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr id="name"></tr>
+        <tr id="email"></tr>
+        <tr id="wa"></tr>
+
+    </table>
