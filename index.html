@@ -4,24 +4,11 @@
 <head>
     <style>
         th,
-        ol {
+        tr,
+        td {
             border: 1px solid black;
             border-collapse: collapse;
             font-size: small;
-        }
-        
-        ol {
-            margin: auto;
-            padding-left: auto;
-        }
-        
-        li {
-            transition-duration: 0.5ms;
-        }
-        
-        li:hover {
-            color: black;
-            background-color: yellow;
         }
     </style>
 
@@ -37,28 +24,7 @@
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
 
-    <table id="tableData" style="width: 100%">
-        <tr>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Nomor WhatsApp</th>
-        </tr>
-        <tr>
-            <td>
-                <ol id="name"></ol>
-            </td>
-
-            <td>
-                <ol id="email"></ol>
-            </td>
-
-            <td>
-                <ol id="wa"></ol>
-            </td>
-        </tr>
-        <tr></tr>
-        <tr></tr>
-    </table>
+    <div id="container"></div>
 
     <script>
         function upload(event) {
@@ -78,25 +44,32 @@
                     const name = row.split(",")[2].split('"')[1];
                     const email = row.split(",")[1].split('"')[1];
                     const wa = row.split(",")[5].split('"')[1];
-
-                    // Create list element from name
-                    let nameListData = document.createElement("li");
-                    let nameValueData = document.createTextNode(name);
-                    nameListData.appendChild(nameValueData);
-                    document.getElementById("name").appendChild(nameListData);
-
-                    // Create list element from email
-                    let emailListData = document.createElement("li");
-                    let emailValueData = document.createTextNode(email);
-                    emailListData.appendChild(emailValueData);
-                    document.getElementById("email").appendChild(emailListData);
-
-                    // Create list element from WhatsApp
-                    let waListData = document.createElement("li");
-                    let waValueData = document.createTextNode(wa);
-                    waListData.appendChild(waValueData);
-                    document.getElementById("wa").appendChild(waListData);
+                    var data = {
+                        name,
+                        email,
+                        wa
+                    }
+                    console.log(data);
                 })
+                var table = document.createElement("table"),
+                    row = table.insertRow();
+
+                // Loop as usual
+                var perrow = 3; // 2 cells per row
+                var count = 0;
+                for (var i of data) {
+                    var cell = row.insertCell();
+                    cell.innerHTML = i;
+
+                    // Break into new row
+                    count++;
+                    if (count % perrow == 0) {
+                        row = table.insertRow();
+                    }
+                }
+
+                // Attach table to HTML <div>
+                document.getElementById("container").appendChild(table);
             };
             reader.readAsText(file);
         }

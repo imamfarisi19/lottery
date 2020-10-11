@@ -1,0 +1,18 @@
+
+                    // // Create list element from name
+                    // let nameListData = document.createElement("td");
+                    // let nameValueData = document.createTextNode(name);
+                    // nameListData.appendChild(nameValueData);
+                    // document.getElementById("name").appendChild(nameListData);
+
+                    // // Create list element from email
+                    // let emailListData = document.createElement("td");
+                    // let emailValueData = document.createTextNode(email);
+                    // emailListData.appendChild(emailValueData);
+                    // document.getElementById("email").appendChild(emailListData);
+
+                    // // Create list element from WhatsApp
+                    // let waListData = document.createElement("td");
+                    // let waValueData = document.createTextNode(wa);
+                    // waListData.appendChild(waValueData);
+                    // document.getElementById("wa").appendChild(waListData);

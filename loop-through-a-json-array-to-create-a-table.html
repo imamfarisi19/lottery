@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>loop-through-a-json-array-to-create-a-table</title>
+    <style>
+        td {
+            border: 1px solid black;
+            padding: 5px
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table1">
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        const data = [{
+            "TITLE": "Empire Burlesque",
+            "ARTIST": "Bob Dylan",
+            "COUNTRY": "USA",
+            "COMPANY": "Columbia",
+            "PRICE": "10.90",
+            "YEAR": "1985"
+        }, {
+            "TITLE": "Picture book",
+            "ARTIST": "Simply Red",
+            "COUNTRY": "EU",
+            "COMPANY": "Elektra",
+            "PRICE": "7.20",
+            "YEAR": "1985"
+        }];
+
+        $(function() {
+            const thead = $("#table1 thead");
+            const tbody = $("#table1 tbody");
+            let tr = $("<tr />");
+
+            $.each(Object.keys(data[0]), function(_, key) {
+                tr.append("<th>" + key + "</th>")
+            });
+            tr.appendTo(thead);
+
+            $.each(data, function(_, obj) {
+                tr = $("<tr />");
+                $.each(obj, function(_, text) {
+                    tr.append("<td>" + text + "</td>")
+                });
+                tr.appendTo(tbody);
+            });
+        })
+    </script>
+</body>
+
+</html>
