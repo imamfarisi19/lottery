@@ -4,7 +4,7 @@ window.addEventListener("load", function() {
 
     // Draw HTML Table
     var html = "<table><tr>";
-    var perrow = 3; // 2 cells per row
+    var perrow = 2; // 2 cells per row
 
     // Loop through array, add cells
     for (var i = 0; i < data.length; i++) {

@@ -10,6 +10,10 @@
             border-collapse: collapse;
             font-size: small;
         }
+        
+        table {
+            width: 100%;
+        }
     </style>
 
     <title>Lottery Farisi</title>
@@ -23,20 +27,7 @@
     <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
-
-    <table style="width: 100%">
-        <tr>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Nomor WhatsApp</th>
-        </tr>
-        <tr>
-            <td id="name"></td>
-        </tr>
-        <tr id="email"></tr>
-        <tr id="wa"></tr>
-
-    </table>
+    <div id="container"></div>
 
     <script>
         function upload(event) {
@@ -50,22 +41,38 @@
                 ar.shift();
                 let shuffleData = acak(ar);
                 let rowData = shuffleData.splice(0, limit);
+                console.log(rowData);
 
                 rowData.map(row => {
-                    const name = row.split(",")[2].split('"')[1];
-                    const email = row.split(",")[1].split('"')[1];
-                    const wa = row.split(",")[5].split('"')[1];
+                    var name = row.split(",")[2].split('"')[1];
+                    var email = row.split(",")[1].split('"')[1];
+                    var wa = row.split(",")[5].split('"')[1];
                     var dataarr = [name, email, wa];
                     console.log(dataarr);
-                    // Create list element from name
 
-                    var nameValueData = document.createTextNode(dataarr);
+                    // Make table
+                    var html = "<table><thead>" +
+                        "<tr>" +
+                        "<th>Nama</th>" +
+                        "<th>Email</th>" +
+                        "<th>Nomor WhatsApp</th>" +
+                        "</tr>" +
+                        "</thead>";
+                    var perrow = 3; // 3 cells per row
+                    for (var i = 0; i < dataarr.length; i++) {
+                        html += "<td>" + dataarr[i] + "</td>";
 
-                    document.getElementById("name").appendChild(nameValueData);
-                    console.log(nameValueData);
+                        // Break row
+                        var next = i + 3;
+                        if (next % perrow == 0 && next != dataarr.length) {
+                            html += "</tr><tr>";
+                        }
+                    }
+                    html += "</tr></table>";
 
+                    // HTML string to <div>
+                    document.getElementById("container").innerHTML = html;
                 })
-
 
             };
             reader.readAsText(file);

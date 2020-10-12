@@ -29,3 +29,33 @@
         <tr id="wa"></tr>
 
     </table>
+
+
+
+
+                        // Create list element from name
+
+                    // var nameValueData = document.createTextNode(dataarr[0]);
+                    // var emailValueData = document.createTextNode(dataarr[1]);
+                    // var waValueData = document.createTextNode(dataarr[2]);
+
+                    // document.getElementById("name").appendChild(nameValueData);
+                    // document.getElementById("email").appendChild(emailValueData);
+                    // document.getElementById("wa").appendChild(waValueData);
+
+                    <!-- <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr>
+            <td id="name"></td>
+        </tr>
+        <tr>
+            <td id="email"></td>
+        </tr>
+        <tr>
+            <td id="wa"></td>
+        </tr>
+    </table> -->
