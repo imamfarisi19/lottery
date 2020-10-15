@@ -1,10 +1,10 @@
 window.addEventListener("load", function() {
     // Dummy array
-    var data = ["first", "second", "third", "forth"];
+    var data = ["first", "second", "third", "forth", "five", "sixth", "seventh", "eight", "nine", "ten"];
 
     // Draw HTML Table
     var html = "<table><tr>";
-    var perrow = 2; // 2 cells per row
+    var perrow = 1; // 2 cells per row
 
     // Loop through array, add cells
     for (var i = 0; i < data.length; i++) {

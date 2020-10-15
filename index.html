@@ -27,8 +27,7 @@
     <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
-    <div id="container"></div>
-
+    <div id="result"></div>
     <script>
         function upload(event) {
             var file = document.getElementById("fileUpload").files[0];
@@ -36,46 +35,28 @@
             const limit = document.getElementById("jumlahpemenang").value;
 
             reader.onload = function(e) {
-                console.log(e)
                 var ar = e.target.result.split("\n");
                 ar.shift();
-                let shuffleData = acak(ar);
-                let rowData = shuffleData.splice(0, limit);
-                console.log(rowData);
+                var shuffleData = acak(ar);
+                var rowData = shuffleData.splice(0, limit);
 
-                rowData.map(row => {
-                    var name = row.split(",")[2].split('"')[1];
-                    var email = row.split(",")[1].split('"')[1];
-                    var wa = row.split(",")[5].split('"')[1];
-                    var dataarr = [name, email, wa];
-                    console.log(dataarr);
 
-                    // Make table
-                    var html = "<table><thead>" +
-                        "<tr>" +
-                        "<th>Nama</th>" +
-                        "<th>Email</th>" +
-                        "<th>Nomor WhatsApp</th>" +
-                        "</tr>" +
-                        "</thead>";
-                    var perrow = 3; // 3 cells per row
-                    for (var i = 0; i < dataarr.length; i++) {
-                        html += "<td>" + dataarr[i] + "</td>";
+		var table  = document.createElement("table");
+                for (var i = 0; i < rowData.length; i++) {
+			var cells = rowData[i].split(",");
+			// avoid blank data
+			if (cells.length > 1) {
+				var row = table.insertRow(-1);
 
-                        // Break row
-                        var next = i + 3;
-                        if (next % perrow == 0 && next != dataarr.length) {
-                            html += "</tr><tr>";
-                        }
-                    }
-                    html += "</tr></table>";
-
-                    // HTML string to <div>
-                    document.getElementById("container").innerHTML = html;
-
-                    //appendChild();
-                })
-
+				// get  mail,name and phone
+				[1,2,5].map(i => {
+					cellData = cells[i].split('"')[1];
+				row.insertCell(-1).innerHTML = cellData;
+			})
+			}
+                }
+	    var resultContainer = document.getElementById('result');
+	    resultContainer.appendChild(table);
             };
             reader.readAsText(file);
         }
@@ -99,6 +80,7 @@
             return ar;
         }
     </script>
+
 
 </body>
 
