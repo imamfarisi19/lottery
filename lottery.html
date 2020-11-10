@@ -4,6 +4,21 @@
 <head>
     <title>Gatcha Farisi</title>
 
+    <style>
+        table,
+        th,
+        td {
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +28,19 @@
     <input type="text" id="jumlahpemenang" name="jumlahpemenang" /><br/>
     <input type="submit" value="Submit" onClick=upload() />
     <hr/>
+    <table>
+        <tr>
+            <th>nama</th>
+            <th>gmail</th>
+            <th>wa</th>
+        </tr>
+        <tr>
+            <td>imam</td>
+            <td>wew@gmail</td>
+            <td>2342</td>
+        </tr>
+
+    </table>
 
     <script>
         function upload(event) {
@@ -59,6 +87,9 @@
                 ar[index] = temp;
             }
             return ar;
+        }
+
+        function buatTable(data) {
 
         }
     </script>
