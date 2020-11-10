@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        th,
+        tr,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-size: small;
+        }
+        
+        table {
+            width: 100%;
+        }
+    </style>
+
+    <title>Lottery Farisi</title>
+</head>
+
+<body>
+    <h1> Aplikasi undian - Farisi </h1>
+    <h2>File upload</h2>
+    <label for="myfile">Select a file:</label><br/>
+    <input type="file" id="fileUpload" name="fileUpload" required/><br/>
+    <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
+    <input type="submit" value="Submit" onclick="upload()">
+    <hr/>
+    <div id="result"></div>
+    <script>
+        function upload(event) {
+            var file = document.getElementById("fileUpload").files[0];
+            var reader = new FileReader();
+            const limit = document.getElementById("jumlahpemenang").value;
+
+            reader.onload = function(e) {
+                var ar = e.target.result.split("\n");
+                ar.shift();
+                var shuffleData = acak(ar);
+                var rowData = shuffleData.splice(0, limit);
+
+
+		var table  = document.createElement("table");
+                for (var i = 0; i < rowData.length; i++) {
+			var cells = rowData[i].split(",");
+			// avoid blank data
+			if (cells.length > 1) {
+				var row = table.insertRow(-1);
+
+				// get  mail,name and phone
+				[1,2,5].map(i => {
+					cellData = cells[i].split('"')[1];
+				row.insertCell(-1).innerHTML = cellData;
+			})
+			}
+                }
+	    var resultContainer = document.getElementById('result');
+	    resultContainer.appendChild(table);
+            };
+            reader.readAsText(file);
+        }
+
+        function acak(ar) {
+
+            var ctr = ar.length,
+                temp, index;
+
+            // while there are elements in the array
+            while (ctr > 0) {
+                // pick a random index
+                index = Math.floor(Math.random() * ctr);
+                // Decrease ctr by 1
+                ctr--;
+                // and swap the last element with it
+                temp = ar[ctr];
+                ar[ctr] = ar[index];
+                ar[index] = temp;
+            }
+            return ar;
+        }
+    </script>
+
+
+</body>
+
+</html>

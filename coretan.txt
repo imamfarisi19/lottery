@@ -1,0 +1,61 @@
+
+                    // // Create list element from name
+                    // let nameListData = document.createElement("td");
+                    // let nameValueData = document.createTextNode(name);
+                    // nameListData.appendChild(nameValueData);
+                    // document.getElementById("name").appendChild(nameListData);
+
+                    // // Create list element from email
+                    // let emailListData = document.createElement("td");
+                    // let emailValueData = document.createTextNode(email);
+                    // emailListData.appendChild(emailValueData);
+                    // document.getElementById("email").appendChild(emailListData);
+
+                    // // Create list element from WhatsApp
+                    // let waListData = document.createElement("td");
+                    // let waValueData = document.createTextNode(wa);
+                    // waListData.appendChild(waValueData);
+                    // document.getElementById("wa").appendChild(waListData);
+
+
+                    <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr id="name"></tr>
+        <tr id="email"></tr>
+        <tr id="wa"></tr>
+
+    </table>
+
+
+
+
+                        // Create list element from name
+
+                    // var nameValueData = document.createTextNode(dataarr[0]);
+                    // var emailValueData = document.createTextNode(dataarr[1]);
+                    // var waValueData = document.createTextNode(dataarr[2]);
+
+                    // document.getElementById("name").appendChild(nameValueData);
+                    // document.getElementById("email").appendChild(emailValueData);
+                    // document.getElementById("wa").appendChild(waValueData);
+
+                    <!-- <table style="width: 100%">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nomor WhatsApp</th>
+        </tr>
+        <tr>
+            <td id="name"></td>
+        </tr>
+        <tr>
+            <td id="email"></td>
+        </tr>
+        <tr>
+            <td id="wa"></td>
+        </tr>
+    </table> -->
