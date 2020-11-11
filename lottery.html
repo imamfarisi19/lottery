@@ -28,21 +28,29 @@
     <input type="text" id="jumlahpemenang" name="jumlahpemenang" /><br/>
     <input type="submit" value="Submit" onClick=upload() />
     <hr/>
-    <table>
-        <tr>
-            <th>nama</th>
-            <th>gmail</th>
-            <th>wa</th>
-        </tr>
-        <tr>
-            <td>imam</td>
-            <td>wew@gmail</td>
-            <td>2342</td>
-        </tr>
-
-    </table>
 
     <script>
+        function buatTable(data) {
+            var mybody = document.getElementsByTagName("body")[0];
+            var mytable = document.createElement("table");
+            var mytablebody = document.createElement("tbody");
+
+            for (var j = 0; j < 10; j++) {
+                mycurrent_row = document.createElement("tr");
+
+                for (var i = 0; i < 10; i++) {
+                    mycurrent_cell = document.createElementElement("td");
+                    currenttext = document.createTextNode("cell is row" + j + ", column " + i);
+                    mycurrent_cell.appendChild(currenttext);
+                    mycurrent_row.appendChild(mycurrent_cell);
+                }
+                mytablebody.appendChild(mycurrent_row);
+            }
+            mytable.appendChild(mytablebody);
+            mybody.appendChild(mytable);
+            mytable.setAttribute("border", "2");
+        }
+
         function upload(event) {
             var file = document.getElementById("myfile").files[0];
             var reader = new FileReader();
@@ -55,7 +63,7 @@
                 const shuffle = acak(ar);
                 const result = shuffle.splice(0, limit);
                 console.log(result);
-
+                buatTable(result);
             };
             reader.readAsText(file);
 
@@ -87,10 +95,6 @@
                 ar[index] = temp;
             }
             return ar;
-        }
-
-        function buatTable(data) {
-
         }
     </script>
 </body>

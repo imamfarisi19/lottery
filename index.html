@@ -2,29 +2,41 @@
 <html>
 
 <head>
+    <title>Lottery Farisi</title>
+
     <style>
-        th,
-        tr,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            font-size: small;
-        }
-        
         table {
             width: 100%;
         }
+        
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 15px;
+        }
+        
+        th {
+            text-align: left;
+        }
+        
+        table {
+            border-spacing: 5px;
+        }
     </style>
-
-    <title>Lottery Farisi</title>
 </head>
 
 <body>
     <h1> Aplikasi undian - Farisi </h1>
     <h2>File upload</h2>
     <label for="myfile">Select a file:</label><br/>
-    <input type="file" id="fileUpload" name="fileUpload" required/><br/>
-    <input type=" text " id="jumlahpemenang" name="jumlahpemenang" required/><br/>
+    <input type="file" id="fileUpload" name="fileUpload" accept=".csv" required/><br/>
+    <input type="text" id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
     <div id="result"></div>
@@ -40,23 +52,24 @@
                 var shuffleData = acak(ar);
                 var rowData = shuffleData.splice(0, limit);
 
-
-		var table  = document.createElement("table");
+                var table = document.createElement("table");
                 for (var i = 0; i < rowData.length; i++) {
-			var cells = rowData[i].split(",");
-			// avoid blank data
-			if (cells.length > 1) {
-				var row = table.insertRow(-1);
+                    var cells = rowData[i].split(",");
+                    // avoid blank data
+                    if (cells.length > 1) {
+                        var row = table.insertRow(-1);
 
-				// get  mail,name and phone
-				[1,2,5].map(i => {
-					cellData = cells[i].split('"')[1];
-				row.insertCell(-1).innerHTML = cellData;
-			})
-			}
+                        // get  mail,name and phone
+                        [1, 2, 5].map(i => {
+                            cellData = cells[i].split('"')[1];
+                            row.insertCell(-1).innerHTML = cellData;
+                        })
+                    }
                 }
-	    var resultContainer = document.getElementById('result');
-	    resultContainer.appendChild(table);
+                var resultContainer = document.getElementById('result');
+                resultContainer.appendChild(table);
+                table.style.border = "1px solid black";
+
             };
             reader.readAsText(file);
         }
@@ -80,7 +93,6 @@
             return ar;
         }
     </script>
-
 
 </body>
 
