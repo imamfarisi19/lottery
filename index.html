@@ -54,15 +54,20 @@
 
                 var table = document.createElement("table");
                 var header = table.createTHead();
-                var headRow = header.insertRow(0);
-                var headCell = headRow.insertCell(0);
+                var tHeadRow = header.insertRow();
+                var tHeadCell1 = tHeadRow.insertCell();
+                var tHeadCell2 = tHeadRow.insertCell();
+                var tHeadCell3 = tHeadRow.insertCell();
+                var td = ["Email", "nama", "WhatsApp"];
+                tHeadCell1.innerHTML = td[0];
+                tHeadCell2.innerHTML = td[1];
+                tHeadCell3.innerHTML = td[2];
 
                 for (var i = 0; i < rowData.length; i++) {
                     var cells = rowData[i].split(",");
                     // avoid blank data
                     if (cells.length > 1) {
                         var row = table.insertRow(-1);
-                        var row = tH.insertRow();
                         // get  mail,name and phone
                         [1, 2, 5].map(i => {
                             cellData = cells[i].split('"')[1];
@@ -72,18 +77,14 @@
                 }
                 var resultContainer = document.getElementById('result');
                 resultContainer.appendChild(table);
-
                 table.style.border = "1px solid black";
-
             };
             reader.readAsText(file);
         }
 
         function acak(ar) {
-
             var ctr = ar.length,
                 temp, index;
-
             // while there are elements in the array
             while (ctr > 0) {
                 // pick a random index
