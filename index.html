@@ -53,12 +53,16 @@
                 var rowData = shuffleData.splice(0, limit);
 
                 var table = document.createElement("table");
+                var header = table.createTHead();
+                var headRow = header.insertRow(0);
+                var headCell = headRow.insertCell(0);
+
                 for (var i = 0; i < rowData.length; i++) {
                     var cells = rowData[i].split(",");
                     // avoid blank data
                     if (cells.length > 1) {
                         var row = table.insertRow(-1);
-
+                        var row = tH.insertRow();
                         // get  mail,name and phone
                         [1, 2, 5].map(i => {
                             cellData = cells[i].split('"')[1];
@@ -68,6 +72,7 @@
                 }
                 var resultContainer = document.getElementById('result');
                 resultContainer.appendChild(table);
+                resultContainer.appendChild(tH);
                 table.style.border = "1px solid black";
 
             };
