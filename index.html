@@ -34,14 +34,15 @@
 <body>
     <h1> Aplikasi undian - Farisi </h1>
     <h2>File upload</h2>
-    <label for="myfile">Select a file:</label><br/>
-    <input type="file" id="fileUpload" name="fileUpload" accept=".csv" required/><br/>
+    <label for="myfile">Select a file upload : </label><br/>
+    <input type="file" id="fileUpload" name="fileUpload" accept=".csv" title="" required/><br/>
     <input type="text" id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
     <div id="result"></div>
     <script>
         function upload(event) {
+            validateFileUpload();
             var file = document.getElementById("fileUpload").files[0];
             var reader = new FileReader();
             const limit = document.getElementById("jumlahpemenang").value;
@@ -97,6 +98,14 @@
                 ar[index] = temp;
             }
             return ar;
+        }
+
+        function validateFileUpload() {
+            var x = document.getElementById("fileUpload").value;
+            if (x == "" || x == null) {
+                alert("File upload can't empty");
+                return False;
+            }
         }
     </script>
 
