@@ -35,17 +35,18 @@
     <h1> Aplikasi undian - Farisi </h1>
     <h2>File upload</h2>
     <label for="myfile">Select a file upload : </label><br/>
-    <input type="file" id="fileUpload" name="fileUpload" accept=".csv" title="" required/><br/>
+    <input type="file" id="fileUpload" name="fileUpload" accept title="" required/><br/>
     <input type="text" id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
     <div id="result"></div>
     <script>
         function upload(event) {
-            validateFileUpload();
+            validateFileUpload(file);
             var file = document.getElementById("fileUpload").files[0];
             var reader = new FileReader();
             const limit = document.getElementById("jumlahpemenang").value;
+            validateFileUpload(file);
 
             reader.onload = function(e) {
                 var ar = e.target.result.split("\n");
@@ -102,13 +103,18 @@
 
         function validateFileUpload() {
             var f = document.getElementById("fileUpload").value;
+            console.log(f);
             if (f == "" || f == null) {
                 alert("File upload can't empty");
                 return false;
             }
+
             // var fileExt = [".xlsx", ".xls", ".csv"];
-            var check = document.getElementById("fileUpload").value;
-            // var validExts = new Array(".xlsx", ".xls", ".csv");
+            // var check = document.getElementById("fileUpload").value;
+            // console.log(check);
+            // check.substring
+
+            // var validExts = new Array(".xlsx", ".xls", ".csv");  
             // fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
             // if (validExts.indexOf(fileExt) < 0) {
             //     alert("Invalid file selected, valid files are of " +
@@ -118,8 +124,6 @@
 
             // buat array dari extentionnya
             // value file input diinisialisasi ke suatu variable
-            // 
-            // 
 
         }
 
