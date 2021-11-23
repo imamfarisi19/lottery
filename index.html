@@ -3,39 +3,15 @@
 
 <head>
     <title>Lottery Farisi</title>
-
-    <style>
-        table {
-            width: 100%;
-        }
-        
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        
-        th,
-        td {
-            padding: 15px;
-        }
-        
-        th {
-            text-align: left;
-        }
-        
-        table {
-            border-spacing: 5px;
-        }
-    </style>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1> Aplikasi undian - Farisi </h1>
     <h2>File upload</h2>
     <label for="myfile">Select a file upload : </label><br/>
-    <input type="file" id="fileUpload" name="fileUpload" accept title="" required/><br/>
+    <input type="file" id="fileUpload" name="fileUpload" accept=".csv" title="test" required/><br/>
+	<br/>
     <input type="text" id="jumlahpemenang" name="jumlahpemenang" required/><br/>
     <input type="submit" value="Submit" onclick="upload()">
     <hr/>
@@ -108,35 +84,8 @@
                 alert("File upload can't empty");
                 return false;
             }
-
-            // var fileExt = [".xlsx", ".xls", ".csv"];
-            // var check = document.getElementById("fileUpload").value;
-            // console.log(check);
-            // check.substring
-
-            // var validExts = new Array(".xlsx", ".xls", ".csv");  
-            // fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
-            // if (validExts.indexOf(fileExt) < 0) {
-            //     alert("Invalid file selected, valid files are of " +
-            //         validExts.toString() + " types.");
-            //     return false;
-            // }
-
-            // buat array dari extentionnya
-            // value file input diinisialisasi ke suatu variable
-
         }
 
-        //to do
-        // pisahkan data per baris .done.
-        // hapus header data pada baris pertama.done.
-        // acak data .done.
-        // ambil beberapa data sesuai nilai dari form #jumlahpemenang.done.
-        // tampilkan data di halaman web di bawah baris.done.
-        // validasi
-        // 1. error bila file kosong.done.
-        // 2. error bila file bukan csv.
-        // 3. error bila input jumlah kosong
     </script>
 
 </body>
